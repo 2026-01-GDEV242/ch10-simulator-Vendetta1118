@@ -56,7 +56,14 @@ public abstract class Animal
     {
         return alive;
     }
-
+    
+    protected abstract int getBreedingAge();
+    
+    protected boolean canBreed()
+    {
+        return getAge() >= getBreedingAge();
+    }
+    
     /**
      * Indicate that the animal is no longer alive.
      * It is removed from the field.
