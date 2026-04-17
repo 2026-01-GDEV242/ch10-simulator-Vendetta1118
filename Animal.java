@@ -100,6 +100,16 @@ public abstract class Animal
         field.place(this, newLocation);
     }
     
+    protected abstract int getMaxAge();
+    
+    protected void incrementAge()
+    {
+        setAge(getAge() + 1);
+        if(getAge() > getMaxAge()) {
+            setDead();
+        }
+    }
+    
     /**
      * Return the animal's field.
      * @return The animal's field.
