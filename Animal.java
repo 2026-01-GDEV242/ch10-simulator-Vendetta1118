@@ -15,10 +15,12 @@ public abstract class Animal
     // The animal's position in the field.
     private Location location;
     // The animal's age.
+    //Moved from subclasses (Fox and Rabbit) to eliminate duplication.
     private int age;
     
     /**
      * Create a new animal at location in field.
+     * the animal is intitialized as alive with age 0.
      * 
      * @param field The field currently occupied.
      * @param location The location within the field.
@@ -37,12 +39,24 @@ public abstract class Animal
      * @param newAnimals A list to receive newly born animals.
      */
     abstract public void act(List<Animal> newAnimals);
-
+    
+    /**
+     * Return the age of this animal
+     * 
+     * @return The current age of the animal.
+     */
     protected int getAge()
     {
         return age;
     }
     
+    /**
+     * Set the age of this animal.
+     * 
+     * Used by subclasses instead of directly accessing the age field.
+     * 
+     * @param age The new age to assign.
+     */
     protected void setAge(int age)
     {
         this.age = age;
@@ -57,8 +71,20 @@ public abstract class Animal
         return alive;
     }
     
+    /**
+     * Return the breeding age of this animal.
+     * 
+     * @return The age at which this animal can start breeding.
+     */
     protected abstract int getBreedingAge();
     
+    /**
+     * Determine whether this animal is old enough to breed.
+     * This method was moved to the animal class to remove duplication.
+     * It relies on the subclass defined breeding age.
+     * 
+     * @return true if the animal can breed, false otherwise
+     */
     protected boolean canBreed()
     {
         return getAge() >= getBreedingAge();
@@ -100,8 +126,19 @@ public abstract class Animal
         field.place(this, newLocation);
     }
     
+    /**
+     * Return the maximum age of this animal. 
+     * Eachsubclass must define its own lifespan.
+     * @return The maximum age this animal can reach.
+     */
     protected abstract int getMaxAge();
     
+    /**
+     * Increase the age of the animal by one step.
+     * 
+     * If the animal exceeds its maximum age, it dies.
+     * This method was moved to the Animal class to remove duplication.
+     */
     protected void incrementAge()
     {
         setAge(getAge() + 1);
