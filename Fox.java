@@ -5,6 +5,7 @@ import java.util.Random;
 /**
  * A simple model of a fox.
  * Foxes age, move, eat rabbits, and die.
+ * Updated to use shared age and breeding from the Animal class.
  * 
  * @author Joseph Schiavone
  * @version 2026.04.16
@@ -151,11 +152,21 @@ public class Fox extends Animal
         return births;
     }
     
+    /**
+     * Return the breeding age for foxes.
+     * 
+     * @return The breeding age.
+     */
     protected int getBreedingAge()
     {
         return BREEDING_AGE;
     }
     
+    /**
+     * Return the maximum age for foxes.
+     * 
+     * @return The maximum age.
+     */
     protected int getMaxAge()
     {
         return MAX_AGE;

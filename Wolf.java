@@ -2,21 +2,27 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.Random;
 /**
- * Write a description of class Wolf here.
+ * A simple model of a wolf.
+ * Wolves age, move, eat rabbits and foxes, and die.
  *
  * @author Joseph Schiavone
  * @version 2026.04.19
  */
 public class Wolf extends Animal
 {
+    // The age at which a wolf can start breed.
     private static final int BREEDING_AGE = 20;
+    // The age at which a wolf can live.
     private static final int MAX_AGE = 200;
+    // The likelihood of a wolf breeding. 
     private static final double BREEDING_PROBABILITY = 0.05;
+    // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
+    // The number of steps a wolf can go before it has to eat again.
     private static final int FOOD_VALUE = 12;
-
+    // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
-    
+    // The wolf's food level, which is increased by eating rabbits and foxes.
     private int foodLevel;
     
     public Wolf(boolean randomAge, Field field, Location location)
@@ -31,6 +37,7 @@ public class Wolf extends Animal
             foodLevel = FOOD_VALUE;
         }
     }
+    
     public void act(List<Animal> newWolves)
     {
         incrementAge();
@@ -52,6 +59,10 @@ public class Wolf extends Animal
         }
     }
     
+    /**
+     * Decrease the wolf's food level.
+     * The wolf dies if its food level reaches zero.
+     */
     private void incrementHunger()
     {
         foodLevel--;
@@ -60,6 +71,12 @@ public class Wolf extends Animal
         }
     }
     
+    /**
+     * Look for prey in adjacent locations.
+     * Wolves can eat both rabbits and foxes
+     * 
+     * @return The location of food if found, or null otherwise.
+     */
     private Location findFood()
     {
         Field field = getField();
@@ -100,11 +117,21 @@ public class Wolf extends Animal
         return births;
     }
     
+    /**
+     * Return the breeding age for wolves.
+     * 
+     * @return The breeding age.
+     */
     protected int getBreedingAge()
     {
         return BREEDING_AGE;
     }
     
+    /**
+     * Return the maximum age for wolves.
+     * 
+     * @return The maximum age.
+     */
     protected int getMaxAge()
     {
         return MAX_AGE;

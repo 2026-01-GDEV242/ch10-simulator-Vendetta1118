@@ -4,6 +4,7 @@ import java.util.Random;
 /**
  * A simple model of a rabbit.
  * Rabbits age, move, breed, and die.
+ * Updated to use shared age and breeding from the Animal class.
  * 
  * @author Joseph Schiavone
  * @version 2026.04.16
@@ -22,10 +23,6 @@ public class Rabbit extends Animal
     private static final int MAX_LITTER_SIZE = 4;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
-    
-    // Individual characteristics (instance fields).
-    
-    // The rabbit's age.
 
     /**
      * Create a new rabbit. A rabbit may be created with age
@@ -99,14 +96,23 @@ public class Rabbit extends Animal
         return births;
     }
     
+    /**
+     * Return the breeding age for rabbits.
+     * 
+     * @return The breeding age.
+     */
     protected int getBreedingAge()
     {
         return BREEDING_AGE;
     }
     
+    /**
+     * Return the maximum age for rabbits.
+     * 
+     * @return The maximum age
+     */
     protected int getMaxAge()
     {
         return MAX_AGE;
     }
-    
 }
